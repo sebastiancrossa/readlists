@@ -1,10 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import { Container } from "../styles";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Readlists | Curated readings for the curious</title>
         <meta name="description" content="Books curated as playlists" />
@@ -12,8 +11,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>Readlists</h1>
-        <h2>Curated readings for the curious</h2>
+        <Container>
+          <h1>Readlists</h1>
+          <h2>Curated readings for the curious</h2>
+        </Container>
       </main>
     </div>
   );
