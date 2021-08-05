@@ -6,7 +6,6 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-
 app.config[
     "SQLALECHMY_DATABASE_URI"
 ] = "postgresql+psycopg2://{user}:{passwd}@{host}:{port}/{table}".format(
@@ -32,7 +31,7 @@ class BookModel(db.Model):
         self.playlist = playlist_id
 
     def __repr__(self):
-        return f"<User {self.title}>"
+        return f"<Book {self.title}>"
 
 
 @app.route("/")
