@@ -2,7 +2,8 @@ import Head from "next/head";
 import "../styles/globals.css";
 import Navigation from "./nav";
 import Featured from "./featured";
-import Playlists from "./playlist-horizontal";
+import Playlist from "./playlist-horizontal";
+import "../styles/style.css";
 
 function MyApp({ Component, pageProps }) {
   // return <Component {...pageProps} />;
@@ -27,7 +28,7 @@ function MyApp({ Component, pageProps }) {
       <div>
         <Navigation></Navigation>
         <Featured></Featured>
-        {/* <Playlists></Playlists> */}
+        <Playlist></Playlist>
       </div>
     </div>
 
