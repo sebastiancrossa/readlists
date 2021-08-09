@@ -35,14 +35,14 @@ export default function Navigation() {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <button
-                    type="button"
-                    class="btn right"
+                  <a
+                    class="nav-link"
+                    // href="#"
                     data-bs-toggle="modal"
                     data-bs-target="#createReadlist"
                   >
                     Create Readlist
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>

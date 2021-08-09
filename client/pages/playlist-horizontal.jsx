@@ -26,21 +26,21 @@ export default function Playlist() {
             ></img>
             <p class="book-title">The Midnight Library </p>
             <p class="book-author">Matt Haig</p>
-            {/* <a
+            <a
               href="https://www.barnesandnoble.com/w/the-midnight-library-matt-haig/1136586832?ean=9780525559474"
               // data-toggle="modal"
               // data-target="#exampleModal"
               class="stretched-link"
             >
-            </a> */}
-            <button
+            </a>
+            {/* <button
               type="button"
               class="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
               Launch book info modal
-            </button>
+            </button> */}
           </div>
           <hr color="grey"></hr>
         </div>
