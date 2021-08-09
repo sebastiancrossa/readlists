@@ -1,0 +1,49 @@
+.center {
+  margin: auto;
+  /* float: none; 
+    margin-bottom: 10px; */
+}
+
+.button-right {
+  /* position: absolute; */
+  right: 0;
+}
+
+.book-title {
+  margin-inline: 20px;
+}
+
+.book-author {
+    color:gray;
+    font-size: smaller;
+    margin-inline: 20px;
+    margin-bottom: 30px;
+    line-height:0px;
+}
+
+.playlist-row {
+    margin-top: 20px;
+}
+
+.playlist-hd {
+    margin-top: 40px;
+}
+
+.card-style {
+    margin-top: 30px;
+}
+
+.nav-margin {
+    margin-top: 30px;
+    margin-inline-start: 95px;
+}
+
+.right {
+    margin: 0px;
+}
+
+.ft-text {
+    margin-inline-start: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Container } from "../styles";
+import MyApp from "./_app";
 
 export default function Home() {
   return (
@@ -11,10 +12,9 @@ export default function Home() {
       </Head>
 
       <main>
-        <Container>
-          <h1>Readlists</h1>
-          <h2>Curated readings for the curious</h2>
-        </Container>
+        {/* <Container> */}
+          <MyApp></MyApp>
+        {/* </Container> */}
       </main>
     </div>
   );
