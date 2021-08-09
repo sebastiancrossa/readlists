@@ -1,6 +1,6 @@
 import json
 import os
-from flask import Flask, render_template, send_from_directory, request
+from flask import Flask, render_template, jsonify, send_from_directory, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -48,7 +48,8 @@ class playlists(db.Model):
 
 @app.route("/")
 def index():
-    # adding dummy data
+    # ---- Dummy data ---- #
+    # TODO: Add real book info
     testPlaylist = playlists("Introduction to American Literature", "sample desc")
     testBook = books("9780399128967", "32")
     testBook1 = books("9780399128968", "33")
@@ -56,14 +57,18 @@ def index():
     db.session.add(testBook1)
     db.session.add(testPlaylist)
     db.session.commit()
+    # ---- ---- #
 
-    # book = books.query.filter_by(isbn="9780399128967").first();
-    # file = json.load(open("playlist.json"))
-    # print(str(db))
-    # return repr(books.query.all())
-    # return str(db.Table("books", db.MetaData()).columns.keys())
-    print(books.query.all())
-    return repr(books.query.all())
+    # Getting response in json format
+    output =  []
+
+    for book in books.query.all():
+        data = {}
+        data['isbn'] = book.isbn
+        data['playlist_id'] = book.playlist_id
+        output.append(data)
+
+    return jsonify(output)
 
 
 # @app.route("/<playlist>")
@@ -72,7 +77,12 @@ def index():
 #     return file
 # return playlists.query.filter_by(name=playlist)
 
-if __name__ == "__main__":
+# Reinitializing the values of our database only on first load
+@app.before_first_request
+def before_req_func():
     db.drop_all()
-    db.create_all()  # create the db if it doesn't exist
+    db.create_all()
+
+if __name__ == "__main__":
+    db.init_app(app)
     app.run(host="0.0.0.0")
