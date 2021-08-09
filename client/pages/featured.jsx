@@ -9,11 +9,12 @@ export default function Featured() {
         <div class="card-body">
           <div class="row">
             <div class="col-md-6 ft-text">
-              <h1 class="card-title">Playlist of the Week</h1>
-              <h4 class="card-text">
+              <h5>Readlist of the Week</h5>
+              <h1 class="card-title">A Cool Readlist</h1>
+              <h5 class="card-text">
                 With supporting text below as a natural lead-in to additional
                 content.
-              </h4>
+              </h5>
               <a href="#" class="btn btn-primary">
                 Go somewhere
               </a>

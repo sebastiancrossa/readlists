@@ -21,7 +21,7 @@ export default function Create() {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="createReadlistLabel">
-                Create Readlist
+                Create a Readlist
               </h5>
               <button
                 type="button"
@@ -33,18 +33,18 @@ export default function Create() {
             <div class="modal-body">
               <div class="mb-3">
                 <label for="readlistName" class="form-label">
-                  Readlist name
+                  Readlist Name
                 </label>
                 <input
                   type="text"
                   class="form-control"
                   id="readlistName"
-                  placeholder="Good Philosophy Starters"
+                  placeholder="A Cool Readlist Name"
                 ></input>
               </div>
               <div class="mb-3">
                 <label for="kutarorName" class="form-label">
-                  Kurator's name
+                  Kurator's Name
                 </label>
                 <input
                   type="text"

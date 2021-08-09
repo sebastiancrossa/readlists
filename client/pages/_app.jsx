@@ -4,8 +4,9 @@ import Navigation from "./nav";
 import Featured from "./featured";
 import Playlist from "./playlist-horizontal";
 import "../styles/style.css";
-import BookInfo from "./book-modal";
+import BookModal from "./book-modal";
 import Create from "./create";
+import ReadlistPage from "./readlist-page";
 
 function MyApp({ Component, pageProps }) {
   // return <Component {...pageProps} />;
@@ -28,10 +29,11 @@ function MyApp({ Component, pageProps }) {
         ></script>
       </Head>
       <div>
+        {/* <ReadlistPage></ReadlistPage> */}
         <Navigation></Navigation>
         <Featured></Featured>
         <Playlist></Playlist>
-        <BookInfo></BookInfo>
+        <BookModal></BookModal>
         <Create></Create>
       </div>
     </div>

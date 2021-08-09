@@ -1,4 +1,4 @@
-export default function BookInfo() {
+export default function BookModal() {
   return (
     <div>
       {/* <button

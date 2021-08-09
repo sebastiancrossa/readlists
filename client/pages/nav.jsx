@@ -29,11 +29,11 @@ export default function Navigation() {
                     Home
                   </a>
                 </li>
-                <li class="nav-item">
+                {/* <li class="nav-item">
                   <a class="nav-link" href="#">
                     Playlists
                   </a>
-                </li>
+                </li> */}
                 <li class="nav-item">
                   <a
                     class="nav-link"
@@ -41,7 +41,7 @@ export default function Navigation() {
                     data-bs-toggle="modal"
                     data-bs-target="#createReadlist"
                   >
-                    Create Readlist
+                    Create a Readlist
                   </a>
                 </li>
               </ul>
