@@ -34,6 +34,16 @@ export default function Navigation() {
                     Playlists
                   </a>
                 </li>
+                <li class="nav-item">
+                  <button
+                    type="button"
+                    class="btn right"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createReadlist"
+                  >
+                    Create Readlist
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
