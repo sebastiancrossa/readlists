@@ -98,6 +98,7 @@ def index():
 #     return file
 # return playlists.query.filter_by(name=playlist)
 
+# User handle
 @app.route("/register", methods=("GET", "POST"))
 def register():
     if request.method == "POST":
@@ -120,12 +121,44 @@ def register():
 
             return redirect(url_for("index"), code=302)
         else:
-            return error
+            return error, 418
     else:
         username = ""
         if "username" in session:
             username = session["username"]
         return username
+
+@app.route('/login', methods=("GET", "POST"))
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        error = None
+
+        user = users.query.filter_by(username=username).first()
+
+        if user is None:
+            error = "Incorrect username."
+        elif not check_password_hash(user.password, password):
+            error = "Incorrect password."
+
+        if error is None:
+            session["username"] = username
+            return redirect(url_for("index"), code=302)
+        else:
+            return error, 418
+    else:
+        username = ""
+        if "username" in session:
+            username = session["username"]
+        
+        return username
+
+@app.route("/logout", methods=("POST"))
+def logout():
+    if "username" in session:
+        session.pop("username")
+    return redirect(url_for("index"), code=302)
 
 # Reinitializing the values of our database only on first load
 @app.before_first_request
