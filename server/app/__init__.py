@@ -1,5 +1,7 @@
 import json
 import os
+
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, jsonify, send_from_directory, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -9,6 +11,24 @@ app = Flask(__name__)
 app.config['SLQALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://{user}:{passwd}@{host}:{port}/{table}'.format(user=os.getenv('POSTGRES_USER'),  passwd=os.getenv('POSTGRES_PASSWORD'), host=os.getenv('POSTGRES_HOST'), port=5432, table=os.getenv('POSTGRES_DB')) 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+class users(db.Model):
+    __tablename__ = "users"
+
+    _id = db.Column(db.Integer(), primary_key=True)
+    username = db.Column(db.String())
+    password = db.Column(db.String())
+    # TODO: add playlists field
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def __repr__(self):
+        return f"<User {self.username}>"
+
+    def __str__(self):
+        return self.username
 
 
 class books(db.Model):
@@ -23,8 +43,7 @@ class books(db.Model):
         self.playlist_id = playlist_id
 
     def __repr__(self):
-        # return f"<Book {self.isbn}>"
-        return "<books %r>" % self.isbn
+        return f"<Book {self.isbn}>"
 
     def __str__(self):
         return self.isbn
@@ -78,6 +97,35 @@ def index():
 #     file = json.load(open(playlist + ".json"))
 #     return file
 # return playlists.query.filter_by(name=playlist)
+
+@app.route("/register", methods=("GET", "POST"))
+def register():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        error = None
+
+        if not username:
+            error = "Username required."
+        elif not password:
+            error = "Password required."
+        elif users.query.filter_by(username=username).first() is not None:
+            error = f"User {username} is already registered."
+
+        if error is None:
+            new_user = users(username, generate_password_hash(password))
+            db.session.add(new_user)
+            db.session.commit()
+            session["username"] = username
+
+            return redirect(url_for("index"), code=302)
+        else:
+            return error
+    else:
+        username = ""
+        if "username" in session:
+            username = session["username"]
+        return username
 
 # Reinitializing the values of our database only on first load
 @app.before_first_request
