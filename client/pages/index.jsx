@@ -5,8 +5,8 @@ import { Container } from "../styles";
 import Nav from "../components/Nav";
 import Featured from "../components/Featured";
 import Playlist from "../components/Playlist";
-import BookModal from "../pages/book-modal";
-import Create from "../pages/create";
+import BookModal from "../components/BookModal";
+import Create from "../components/CreateModal";
 
 export default function Home({ data }) {
   console.log(data);
