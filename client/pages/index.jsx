@@ -8,7 +8,9 @@ import Playlist from "../components/Playlist";
 import BookModal from "../pages/book-modal";
 import Create from "../pages/create";
 
-export default function Home() {
+export default function Home({ data }) {
+  console.log(data);
+
   return (
     <div>
       <Head>
@@ -28,4 +30,14 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const data = await fetch("http://localhost:5000").then((res) => res.json());
+
+  return {
+    props: {
+      data,
+    },
+  };
 }

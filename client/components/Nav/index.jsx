@@ -40,6 +40,9 @@ const Nav = () => {
                     Create a Readlist
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link">[specific readlist]</a>
+                </li>
               </ul>
             </div>
           </div>

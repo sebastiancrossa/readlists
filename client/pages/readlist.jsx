@@ -1,4 +1,4 @@
-import Navigation from "./nav";
+import Navigation from "../components/Nav";
 
 export default function ReadlistPage() {
   return (
