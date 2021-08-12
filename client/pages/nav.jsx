@@ -29,9 +29,19 @@ export default function Navigation() {
                     Home
                   </a>
                 </li>
-                <li class="nav-item">
+                {/* <li class="nav-item">
                   <a class="nav-link" href="#">
                     Playlists
+                  </a>
+                </li> */}
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    // href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createReadlist"
+                  >
+                    Create a Readlist
                   </a>
                 </li>
               </ul>
