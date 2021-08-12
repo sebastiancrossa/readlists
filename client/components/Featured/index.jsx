@@ -14,7 +14,7 @@ const FeaturedHeader = () => {
                 content.
               </h5>
               <a href="#" class="btn btn-primary">
-                Go somewhere
+                Go to readlist
               </a>
             </div>
             <div class="col-md-5">

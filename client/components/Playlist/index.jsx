@@ -5,7 +5,7 @@ const Playlist = () => {
     <div class="col-md-10 center">
       <div class="row">
         <div class="col-md-10 playlist-hd">
-          <h2>Playlist Name</h2>
+          <h2>Introduction to American Literature</h2>
         </div>
         <div class="col-md-2 playlist-hd">
           <div class="text-right">
@@ -13,7 +13,6 @@ const Playlist = () => {
               See more
             </button>
           </div>
-          {/* <button class="btn btn-primary me-md-2" type="button">Button</button> */}
         </div>
         <div class="row">
           <div class="col-md-2 playlist-row position-relative">
