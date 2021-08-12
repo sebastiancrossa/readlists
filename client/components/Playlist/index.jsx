@@ -1,7 +1,6 @@
-// import { Button } from "bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
 
-export default function Playlist() {
+const Playlist = () => {
   return (
     <div class="col-md-10 center">
       <div class="row">
@@ -31,20 +30,12 @@ export default function Playlist() {
               // data-toggle="modal"
               // data-target="#exampleModal"
               class="stretched-link"
-            >
-            </a>
-            {/* <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Launch book info modal
-            </button> */}
+            ></a>
           </div>
-          <hr color="grey"></hr>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Playlist;

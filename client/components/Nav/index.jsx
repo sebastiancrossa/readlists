@@ -1,8 +1,4 @@
-import { Container } from "../styles";
-// import { Navbar, NavbarBrand, Nav } from "bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-
-export default function Navigation() {
+const Nav = () => {
   return (
     <div class="row">
       <div class="col-md-10 nav-margin">
@@ -51,4 +47,6 @@ export default function Navigation() {
       </div>
     </div>
   );
-}
+};
+
+export default Nav;
