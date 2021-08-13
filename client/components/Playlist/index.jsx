@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Playlist = ({ playlist, rawData }) => {
   const [books, setBooks] = useState([]);
@@ -33,8 +34,6 @@ const Playlist = ({ playlist, rawData }) => {
     fetchData();
   }, []);
 
-  console.log(books);
-
   return (
     <div class="col-md-10 center">
       <div class="row">
@@ -43,9 +42,9 @@ const Playlist = ({ playlist, rawData }) => {
         </div>
         <div class="col-md-2 playlist-hd">
           <div class="text-right">
-            <button type="button" class="btn right">
-              See more
-            </button>
+            <Link href={`/readlist/${_id}`} passHref>
+              <a>See all books</a>
+            </Link>
           </div>
         </div>
         <div class="row">

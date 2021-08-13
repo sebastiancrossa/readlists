@@ -1,13 +1,17 @@
-import Navigation from "../components/Nav";
+import { useRouter } from "next/router";
+import Nav from "../../components/Nav";
 
-export default function ReadlistPage() {
+const Readlist = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <div>
-      <Navigation></Navigation>
+      <Nav />
       <div class="col-md-10 center readlist-about">
         <div class="row">
           <div class="col-md-6">
-            <h1>Readlist Name</h1>
+            <h1>Readlist {id}</h1>
             <p>Kurator</p>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -56,4 +60,6 @@ export default function ReadlistPage() {
       </div>
     </div>
   );
-}
+};
+
+export default Readlist;
