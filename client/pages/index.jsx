@@ -23,9 +23,9 @@ export default function Home({ data, playlistData }) {
         <Container>
           <Nav />
           <Featured />
-          {playlistData.map((playlist) => {
-            <Playlist playlist={playlist} rawData={data} />;
-          })}
+          {playlistData.map((playlist) => (
+            <Playlist playlist={playlist} rawData={data} />
+          ))}
           <BookModal />
           <Create />
         </Container>
