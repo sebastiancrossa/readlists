@@ -1,12 +1,14 @@
+import Link from "next/link";
+
 const Nav = () => {
   return (
     <div class="row">
       <div class="col-md-10 nav-margin">
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              Kuration
-            </a>
+            <Link href="/" passHref>
+              <a class="navbar-brand">Kuration</a>
+            </Link>
             <button
               class="navbar-toggler"
               type="button"
@@ -34,9 +36,6 @@ const Nav = () => {
                   >
                     Create a Readlist
                   </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link">[specific readlist]</a>
                 </li>
               </ul>
             </div>

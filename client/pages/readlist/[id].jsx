@@ -1,4 +1,7 @@
 import { useRouter } from "next/router";
+import styled from "styled-components";
+
+import { BsPlus } from "react-icons/bs";
 import Nav from "../../components/Nav";
 
 const Readlist = () => {
@@ -32,7 +35,7 @@ const Readlist = () => {
               ></img>
             </div>
             <div class="col-md-4">
-              <p class="book-title">The Midnight Library </p>
+              <p class="book-title">The Midnight Library</p>
               <p class="book-author">Matt Haig</p>
               <p class="book-title">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -48,12 +51,18 @@ const Readlist = () => {
               ></img>
             </div>
             <div class="col-md-4">
-              <p class="book-title">The Midnight Library </p>
+              <p class="book-title">The Midnight Library</p>
               <p class="book-author">Matt Haig</p>
               <p class="book-title">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
+            </div>
+            <div className="col-md-4">
+              <AddButton>
+                <BsPlus />
+                <p>Have a book suggestion? Add it to readlist</p>
+              </AddButton>
             </div>
           </div>
         </div>
@@ -61,5 +70,16 @@ const Readlist = () => {
     </div>
   );
 };
+
+const AddButton = styled.button`
+  margin: 2rem;
+  padding: 1rem;
+
+  width: 9rem;
+  height: 15rem;
+
+  border: 2px dashed black;
+  border-radius: 5px;
+`;
 
 export default Readlist;
