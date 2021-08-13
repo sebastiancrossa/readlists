@@ -117,11 +117,56 @@ def index():
     return jsonify(output)
 
 
-# @app.route("/<playlist>")
-# def open_file(playlist):
-#     file = json.load(open(playlist + ".json"))
-#     return file
-# return playlists.query.filter_by(name=playlist)
+@app.route("/defaultplaylists")
+def defaultplaylists():
+    plists = (
+        playlists(
+            "Default",
+            "Introduction to American Literature",
+            "Classic American works.",
+        ),
+        playlists(
+            "Default",
+            "19th Century Women",
+            "Historically influential stories by and about women.",
+        ),
+        playlists(
+            "Default",
+            "20th Century Dystopian",
+            "Notable dystopian works reflecting the political climate at the time.",
+        ),
+        playlists(
+            "Default",
+            "WWII Stories",
+            "Real and realistic fiction books about people living through the holocaust.",
+        ),
+        playlists(
+            "Default",
+            "Popular Short Story",
+            "Works that demonstrate length does not always dictate quality.",
+        ),
+        playlists(
+            "Default",
+            "Essential Mystery",
+            "Famous mysteries that will have you at the edge of your seat.",
+        ),
+    )
+    for plist in plists:
+        db.session.add(plist)
+    db.session.commit()
+
+    output = []
+
+    for playlist in playlists.query.all():
+        data = {}
+        data["_id"] = playlist._id
+        data["owner"] = playlist.owner
+        data["name"] = playlist.name
+        data["description"] = playlist.description
+        output.add(data)
+
+    return jsonify(output)
+
 
 # User handle
 @app.route("/register", methods=("GET", "POST"))
