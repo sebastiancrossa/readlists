@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-const Playlist = ({ rawData }) => {
+const Playlist = ({ playlist, rawData }) => {
   const [books, setBooks] = useState([]);
+  const { _id, name, description, owner } = playlist;
 
   useEffect(() => {
     // Loop through the raw data (isbn) and fetch all info from them
@@ -38,7 +39,7 @@ const Playlist = ({ rawData }) => {
     <div class="col-md-10 center">
       <div class="row">
         <div class="col-md-10 playlist-hd">
-          <h2>Introduction to American Literature</h2>
+          <h2>{name}</h2>
         </div>
         <div class="col-md-2 playlist-hd">
           <div class="text-right">

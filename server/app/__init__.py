@@ -106,43 +106,6 @@ def index():
 
 @app.route("/defaultplaylists")
 def defaultplaylists():
-    plists = (
-        playlists(
-            "Default",
-            "Introduction to American Literature",
-            "Classic American works.",
-        ),
-        playlists(
-            "Default",
-            "19th Century Women",
-            "Historically influential stories by and about women.",
-        ),
-        playlists(
-            "Default",
-            "20th Century Dystopian",
-            "Notable dystopian works reflecting the political climate at the time.",
-        ),
-        playlists(
-            "Default",
-            "WWII Stories",
-            "Real and realistic fiction books about people living through the holocaust.",
-        ),
-        playlists(
-            "Default",
-            "Popular Short Story",
-            "Works that demonstrate length does not always dictate quality.",
-        ),
-        playlists(
-            "Default",
-            "Essential Mystery",
-            "Famous mysteries that will have you at the edge of your seat.",
-        ),
-    )
-
-    for plist in plists:
-        db.session.add(plist)
-    db.session.commit()
-
     output = []
 
     for playlist in playlists.query.all():
@@ -154,7 +117,6 @@ def defaultplaylists():
         output.append(data)
 
     return jsonify(output)
-
 
 # User handle
 @app.route("/register", methods=("GET", "POST"))
@@ -264,8 +226,46 @@ def before_req_func():
         "Default", "Introduction to American Literature", "sample desc"
     )
     testBook = books("9780399128967", "32")
+
+    plists = (
+        playlists(
+            "Default",
+            "Introduction to American Literature",
+            "Classic American works.",
+        ),
+        playlists(
+            "Default",
+            "19th Century Women",
+            "Historically influential stories by and about women.",
+        ),
+        playlists(
+            "Default",
+            "20th Century Dystopian",
+            "Notable dystopian works reflecting the political climate at the time.",
+        ),
+        playlists(
+            "Default",
+            "WWII Stories",
+            "Real and realistic fiction books about people living through the holocaust.",
+        ),
+        playlists(
+            "Default",
+            "Popular Short Story",
+            "Works that demonstrate length does not always dictate quality.",
+        ),
+        playlists(
+            "Default",
+            "Essential Mystery",
+            "Famous mysteries that will have you at the edge of your seat.",
+        ),
+    )
+
+    for plist in plists:
+        db.session.add(plist)
+
     db.session.add(testBook)
     db.session.add(testPlaylist)
+
     db.session.commit()
     # ---- ---- #
 
