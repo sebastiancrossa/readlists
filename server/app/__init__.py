@@ -92,19 +92,6 @@ class playlists(db.Model):
 
 @app.route("/")
 def index():
-    # ---- Dummy data ---- #
-    # TODO: Add real book info
-    testPlaylist = playlists(
-        "Default", "Introduction to American Literature", "sample desc"
-    )
-    testBook = books("9780399128967", "32")
-    testBook1 = books("9780399128968", "33")
-    db.session.add(testBook)
-    db.session.add(testBook1)
-    db.session.add(testPlaylist)
-    db.session.commit()
-    # ---- ---- #
-
     # Getting response in json format
     output = []
 
@@ -269,6 +256,17 @@ def createplaylist():
 def before_req_func():
     db.drop_all()
     db.create_all()
+
+    # ---- Dummy data ---- #
+    # TODO: Add real book info
+    testPlaylist = playlists(
+        "Default", "Introduction to American Literature", "sample desc"
+    )
+    testBook = books("9780399128967", "32")
+    db.session.add(testBook)
+    db.session.add(testPlaylist)
+    db.session.commit()
+    # ---- ---- #
 
 
 if __name__ == "__main__":

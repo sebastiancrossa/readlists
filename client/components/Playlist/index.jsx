@@ -1,6 +1,39 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
-const Playlist = () => {
+const Playlist = ({ rawData }) => {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    // Loop through the raw data (isbn) and fetch all info from them
+    const fetchData = async () => {
+      Promise.all(
+        rawData.map(async (book) => {
+          const data = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=isbn:${book.isbn}&key=${process.env.NEXT_PUBLIC_BOOKS_API}`
+          ).then((res) => res.json());
+
+          const fetchedBook = data.items[0].volumeInfo;
+
+          setBooks((prevState) => [
+            ...prevState,
+            {
+              title: fetchedBook["title"],
+              authors: fetchedBook["authors"],
+              publishedDate: fetchedBook["publishedDate"],
+              rating: fetchedBook["averageRating"],
+              thumbnail: fetchedBook["imageLinks"]["thumbnail"],
+              link: fetchedBook["infoLink"],
+            },
+          ]);
+        })
+      );
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(books);
+
   return (
     <div class="col-md-10 center">
       <div class="row">
@@ -15,22 +48,20 @@ const Playlist = () => {
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2 playlist-row position-relative">
-            <img
-              src="https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&product=path%5B/pimages/9780525559474_p0_v6%5D&call=url%5Bfile:common/decodeProduct.chain%5D"
-              class="rounded mx-auto d-block"
-              width="auto"
-              height="200"
-            ></img>
-            <p class="book-title">The Midnight Library </p>
-            <p class="book-author">Matt Haig</p>
-            <a
-              href="https://www.barnesandnoble.com/w/the-midnight-library-matt-haig/1136586832?ean=9780525559474"
-              // data-toggle="modal"
-              // data-target="#exampleModal"
-              class="stretched-link"
-            ></a>
-          </div>
+          {books.length > 0 &&
+            books.map((book) => (
+              <div class="col-md-2 playlist-row position-relative">
+                <img
+                  src={book.thumbnail}
+                  class="rounded mx-auto d-block"
+                  width="auto"
+                  height="200"
+                />
+                <p class="book-title">{book.title}</p>
+                <p class="book-author">{book.authors[0]}</p>
+                <a href={book.link} class="stretched-link" />
+              </div>
+            ))}
         </div>
       </div>
     </div>
