@@ -138,6 +138,7 @@ def defaultplaylists():
             "Famous mysteries that will have you at the edge of your seat.",
         ),
     )
+
     for plist in plists:
         db.session.add(plist)
     db.session.commit()
@@ -150,7 +151,7 @@ def defaultplaylists():
         data["owner"] = playlist.owner
         data["name"] = playlist.name
         data["description"] = playlist.description
-        output.add(data)
+        output.append(data)
 
     return jsonify(output)
 
