@@ -225,7 +225,7 @@ def before_req_func():
     testPlaylist = playlists(
         "Default", "Introduction to American Literature", "sample desc"
     )
-    testBook = books("9780399128967", "32")
+    testBook = books("9780399128967", "1")
 
     plists = (
         playlists(

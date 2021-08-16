@@ -16,6 +16,8 @@ const Playlist = ({ playlist, rawData }) => {
 
           const fetchedBook = data.items[0].volumeInfo;
 
+          console.log(data.items[0]);
+
           setBooks((prevState) => [
             ...prevState,
             {

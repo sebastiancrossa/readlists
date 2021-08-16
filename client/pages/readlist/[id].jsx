@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { BsPlus } from "react-icons/bs";
 import Nav from "../../components/Nav";
 
-const Readlist = () => {
+const Readlist = ({ data, playlistData }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -14,12 +14,9 @@ const Readlist = () => {
       <div class="col-md-10 center readlist-about">
         <div class="row">
           <div class="col-md-6">
-            <h1>Readlist {id}</h1>
-            <p>Kurator</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <h1>{playlistData.name}</h1>
+            <p>Curated by Kurator</p>
+            <p>{playlistData.description}</p>
           </div>
         </div>
       </div>
@@ -70,6 +67,29 @@ const Readlist = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const { query } = ctx;
+
+  // Fetch all data
+  const data = await fetch("http://localhost:5000").then((res) => res.json());
+  const playlistData = await fetch(
+    "http://localhost:5000/defaultplaylists"
+  ).then((res) => res.json());
+
+  // Get only the books from the current playlist
+  const filteredData = data.filter((book) => book.playlist_id === query.id);
+  const filteredPlaylists = playlistData.filter(
+    (playlist) => playlist._id === parseInt(query.id)
+  );
+
+  return {
+    props: {
+      data: filteredData,
+      playlistData: filteredPlaylists[0],
+    },
+  };
+}
 
 const AddButton = styled.button`
   margin: 2rem;
