@@ -1,0 +1,40 @@
+version: "3"
+services:
+
+  backend:
+    container_name: backend
+    build: ./server
+    ports:
+      - "5000:5000"
+    restart: always
+    env_file:
+      - .env
+    # volumes:
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+
+  frontend:
+    container_name: frontend
+    restart: always
+    build: ./client
+    ports: 
+      - "3000:3000"
+    env_file:
+      - .env
+
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./user_conf.d:/etc/nginx/user_conf.d
+    
