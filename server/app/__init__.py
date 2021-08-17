@@ -117,8 +117,8 @@ def index():
     return jsonify(output)
 
 
-@app.route("/defaultplaylists")
-def defaultplaylists():
+@app.route("/allplaylists")
+def allplaylists():
     plists = (
         playlists(
             "Default",
