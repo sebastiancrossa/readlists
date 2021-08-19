@@ -1,0 +1,13 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/book-modal": "pages/book-modal.html",
+  "/create": "pages/create.html",
+  "/featured": "pages/featured.html",
+  "/": "pages/index.html",
+  "/nav": "pages/nav.html",
+  "/playlist-horizontal": "pages/playlist-horizontal.html",
+  "/readlist-page": "pages/readlist-page.html",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+}

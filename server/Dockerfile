@@ -1,12 +1,14 @@
 
 FROM python:3.8-slim-buster
 
-RUN mkdir /flask-blogger
-COPY requirements.txt /flask-blogger
-WORKDIR /flask-blogger
+RUN mkdir /readlists
+COPY requirements.txt /readlists
+WORKDIR /readlists
 RUN pip3 install -r requirements.txt
 
-COPY . /flask-blogger
+COPY . /readlists
+
+EXPOSE 5000
 
 RUN chmod u+x ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
