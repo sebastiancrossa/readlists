@@ -28,6 +28,18 @@ services:
       - "3000:3000"
     env_file:
       - .env
+    
+    cadvisor:
+    container_name: cadvisor
+    image: gcr.io/cadvisor/cadvisor:latest
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
 
   # nginx:
   #   container_name: nginx
