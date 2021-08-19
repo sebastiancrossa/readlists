@@ -1,4 +1,4 @@
-export default function Create() {
+const CreateModal = () => {
   return (
     <div>
       {/* <button
@@ -71,4 +71,6 @@ export default function Create() {
       </div>
     </div>
   );
-}
+};
+
+export default CreateModal;

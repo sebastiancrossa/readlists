@@ -92,19 +92,6 @@ class playlists(db.Model):
 
 @app.route("/")
 def index():
-    # ---- Dummy data ---- #
-    # TODO: Add real book info
-    testPlaylist = playlists(
-        "Default", "Introduction to American Literature", "sample desc"
-    )
-    testBook = books("9780399128967", "32")
-    testBook1 = books("9780399128968", "33")
-    db.session.add(testBook)
-    db.session.add(testBook1)
-    db.session.add(testPlaylist)
-    db.session.commit()
-    # ---- ---- #
-
     # Getting response in json format
     output = []
 
@@ -119,42 +106,6 @@ def index():
 
 @app.route("/defaultplaylists")
 def defaultplaylists():
-    plists = (
-        playlists(
-            "Default",
-            "Introduction to American Literature",
-            "Classic American works.",
-        ),
-        playlists(
-            "Default",
-            "19th Century Women",
-            "Historically influential stories by and about women.",
-        ),
-        playlists(
-            "Default",
-            "20th Century Dystopian",
-            "Notable dystopian works reflecting the political climate at the time.",
-        ),
-        playlists(
-            "Default",
-            "WWII Stories",
-            "Real and realistic fiction books about people living through the holocaust.",
-        ),
-        playlists(
-            "Default",
-            "Popular Short Story",
-            "Works that demonstrate length does not always dictate quality.",
-        ),
-        playlists(
-            "Default",
-            "Essential Mystery",
-            "Famous mysteries that will have you at the edge of your seat.",
-        ),
-    )
-    for plist in plists:
-        db.session.add(plist)
-    db.session.commit()
-
     output = []
 
     for playlist in playlists.query.all():
@@ -163,10 +114,9 @@ def defaultplaylists():
         data["owner"] = playlist.owner
         data["name"] = playlist.name
         data["description"] = playlist.description
-        output.add(data)
+        output.append(data)
 
     return jsonify(output)
-
 
 # User handle
 @app.route("/register", methods=("GET", "POST"))
@@ -269,6 +219,104 @@ def createplaylist():
 def before_req_func():
     db.drop_all()
     db.create_all()
+
+    # ---- Data insertion ---- #
+    books_am_lit = (
+        books("9780060933272", "1"), # To Kill a Mockingbird
+        books("9780020198819", "1"), # The Great Gatsby
+        books("9783499108518", "1"), # The Catcher and the Rye
+    )
+
+    books_19_women = (
+        books("9780140430721", "2"), # Pride and Prejudice
+        books("9780075543893", "2"), # Little Women
+        books("9780192815132", "2"), # Jane Eyre
+    )
+
+    books_dystopian = (
+        books("9780345342966", "3"), # Fahrenheit 451
+        books("9780140817744", "3"), # 1984
+        books("9780582060166", "3"), # Brave New World
+        books("9780340960196", "3"), # Dune
+    )
+
+    books_ww2 = (
+        books("9780006736776", "4"), # Number the Stars
+        books("9780307475732", "4"), # The Book Thief
+        books("9780141032009", "4"), # Diary of Anne Frank
+        books("9780099487821", "4"), # Boy in Striped Pyjamas
+    )
+
+    books_short = (
+        books("9785457724440", "5"), # Summer in a day
+        books("9780789154798", "5"), # Story of an hour
+        books("9780415263580", "5"), # Yellow wallpaper
+        books("9780141396330", "5"), # The Lottery
+        books("9780194237079", "5"), # Murder in the Rue Morgue
+    )
+
+    books_mystery = (
+        books("9780192823786", "6"), # Adventures of Sherlock Holmes
+        books("9780062073488", "6"), # And then there were none
+        books("9780142401200", "6"), # The Westing Game
+    )
+
+    plists = (
+        playlists(
+            "Default",
+            "Introduction to American Literature",
+            "Classic American works.",
+        ),
+        playlists(
+            "Default",
+            "19th Century Women",
+            "Historically influential stories by and about women.",
+        ),
+        playlists(
+            "Default",
+            "20th Century Dystopian",
+            "Notable dystopian works reflecting the political climate at the time.",
+        ),
+        playlists(
+            "Default",
+            "WWII Stories",
+            "Real and realistic fiction books about people living through the holocaust.",
+        ),
+        playlists(
+            "Default",
+            "Popular Short Story",
+            "Works that demonstrate length does not always dictate quality.",
+        ),
+        playlists(
+            "Default",
+            "Essential Mystery",
+            "Famous mysteries that will have you at the edge of your seat.",
+        ),
+    )
+
+    for plist in plists:
+        db.session.add(plist)
+
+    for book in books_am_lit:
+        db.session.add(book)
+
+    for book in books_19_women:
+        db.session.add(book)
+
+    for book in books_dystopian:
+        db.session.add(book)
+
+    for book in books_ww2:
+        db.session.add(book)
+
+    for book in books_short:
+        db.session.add(book)
+
+    for book in books_mystery:
+        db.session.add(book)
+
+    db.session.commit()
+    # ---- ---- #
 
 
 if __name__ == "__main__":
