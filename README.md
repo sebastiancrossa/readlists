@@ -10,7 +10,11 @@ readers can spend less time browsing, and more time reading!
 You can see the website in action at [Kuration.tech](https://www.kuration.tech).
 ## Demo
 
-  https://drive.google.com/file/d/1dHaNr7de7L2Adi4DJl38UluqEK3czpTt/view?usp=sharing
+
+https://user-images.githubusercontent.com/67514557/130158349-a42f8bd1-19c2-4033-b24c-9b29ff6f01ce.mov
+
+
+
 ## Run Locally
 
 Please refer to the client and server directories for instructions
