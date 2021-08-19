@@ -96,9 +96,11 @@ export async function getServerSideProps(ctx) {
   const { query } = ctx;
 
   // Fetch all data
-  const data = await fetch("http://localhost:5000").then((res) => res.json());
+  const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/`).then(
+    (res) => res.json()
+  );
   const playlistData = await fetch(
-    "http://localhost:5000/defaultplaylists"
+    `${process.env.NEXT_PUBLIC_SERVER_API}/defaultplaylists`
   ).then((res) => res.json());
 
   // Get only the books from the current playlist

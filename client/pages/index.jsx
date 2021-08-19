@@ -33,9 +33,11 @@ export default function Home({ data, playlistData }) {
 }
 
 export async function getServerSideProps(context) {
-  const data = await fetch("http://localhost:5000").then((res) => res.json());
+  const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/`).then(
+    (res) => res.json()
+  );
   const playlistData = await fetch(
-    "http://localhost:5000/defaultplaylists"
+    `${process.env.NEXT_PUBLIC_SERVER_API}/defaultplaylists`
   ).then((res) => res.json());
 
   return {
