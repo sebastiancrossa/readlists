@@ -1,16 +1,14 @@
-import { Container } from "../styles";
-// import { Navbar, NavbarBrand, Nav } from "bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import Link from "next/link";
 
-export default function Navigation() {
+const Nav = () => {
   return (
     <div class="row">
       <div class="col-md-10 nav-margin">
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              Kuration
-            </a>
+            <Link href="/" passHref>
+              <a class="navbar-brand">Kuration</a>
+            </Link>
             <button
               class="navbar-toggler"
               type="button"
@@ -25,15 +23,10 @@ export default function Navigation() {
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
-                    Home
+                  <a class="nav-link" href="#">
+                    All playlists
                   </a>
                 </li>
-                {/* <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    Playlists
-                  </a>
-                </li> */}
                 <li class="nav-item">
                   <a
                     class="nav-link"
@@ -51,4 +44,6 @@ export default function Navigation() {
       </div>
     </div>
   );
-}
+};
+
+export default Nav;

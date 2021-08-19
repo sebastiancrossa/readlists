@@ -1,8 +1,6 @@
-// import { Card, Button, Image } from "bootsrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import pic from "./img-placeholder.png";
+import React from "react";
 
-export default function Featured() {
+const FeaturedHeader = () => {
   return (
     <div class="col-md-10 center">
       <div class="card card-style">
@@ -16,7 +14,7 @@ export default function Featured() {
                 content.
               </h5>
               <a href="#" class="btn btn-primary">
-                Go somewhere
+                Go to readlist
               </a>
             </div>
             <div class="col-md-5">
@@ -33,4 +31,6 @@ export default function Featured() {
       </div>
     </div>
   );
-}
+};
+
+export default FeaturedHeader;

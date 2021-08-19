@@ -1,4 +1,6 @@
-export default function BookModal() {
+import React from "react";
+
+const BookModal = () => {
   return (
     <div>
       {/* <button
@@ -58,4 +60,6 @@ export default function BookModal() {
       </div>
     </div>
   );
-}
+};
+
+export default BookModal;
