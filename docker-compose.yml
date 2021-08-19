@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     
-    cadvisor:
+  cadvisor:
     container_name: cadvisor
     image: gcr.io/cadvisor/cadvisor:latest
     restart: unless-stopped
