@@ -9,8 +9,6 @@ import BookModal from "../components/BookModal";
 import Create from "../components/CreateModal";
 
 export default function Home({ data, playlistData }) {
-  console.log(playlistData);
-
   return (
     <div>
       <Head>

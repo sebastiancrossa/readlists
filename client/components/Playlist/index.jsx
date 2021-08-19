@@ -6,27 +6,45 @@ const Playlist = ({ playlist, rawData }) => {
   const { _id, name, description, owner } = playlist;
 
   useEffect(() => {
+    // filtering only the info from the current playlist
+    const filteredData = rawData.filter(
+      (book) => parseInt(book.playlist_id) === parseInt(_id)
+    );
+
+    console.log("fetching playlist", _id);
     // Loop through the raw data (isbn) and fetch all info from them
     const fetchData = async () => {
       Promise.all(
-        rawData.map(async (book) => {
+        filteredData.map(async (book) => {
+          let resStatus;
+
           const data = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=isbn:${book.isbn}&key=${process.env.NEXT_PUBLIC_BOOKS_API}`
-          ).then((res) => res.json());
+          ).then((res) => {
+            resStatus = res.status;
+            return res.json();
+          });
 
-          const fetchedBook = data.items[0].volumeInfo;
+          // Only assign data if status code is 200 (successful)
+          if (resStatus == 200 && data.items) {
+            const fetchedBook = data?.items[0]?.volumeInfo;
 
-          setBooks((prevState) => [
-            ...prevState,
-            {
-              title: fetchedBook["title"],
-              authors: fetchedBook["authors"],
-              publishedDate: fetchedBook["publishedDate"],
-              rating: fetchedBook["averageRating"],
-              thumbnail: fetchedBook["imageLinks"]["thumbnail"],
-              link: fetchedBook["infoLink"],
-            },
-          ]);
+            setBooks((prevState) => [
+              ...prevState,
+              {
+                title: fetchedBook["title"],
+                authors: fetchedBook["authors"]
+                  ? fetchedBook["authors"]
+                  : "Not found :(",
+                publishedDate: fetchedBook["publishedDate"],
+                rating: fetchedBook["averageRating"],
+                thumbnail: fetchedBook["imageLinks"]
+                  ? fetchedBook["imageLinks"]["thumbnail"]
+                  : "https://ravenspacepublishing.org/wp-content/uploads/2019/04/default-book.jpg",
+                link: fetchedBook["infoLink"],
+              },
+            ]);
+          }
         })
       );
     };

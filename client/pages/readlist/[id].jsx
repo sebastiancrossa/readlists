@@ -16,23 +16,34 @@ const Readlist = ({ data, playlistData }) => {
     const fetchData = async () => {
       Promise.all(
         data.map(async (book) => {
+          let resStatus;
+
           const bookData = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=isbn:${book.isbn}&key=${process.env.NEXT_PUBLIC_BOOKS_API}`
-          ).then((res) => res.json());
+          ).then((res) => {
+            resStatus = res.status;
+            return res.json();
+          });
 
-          const fetchedBook = bookData.items[0].volumeInfo;
+          if (resStatus == 200 && bookData.items) {
+            const fetchedBook = bookData?.items[0]?.volumeInfo;
 
-          setBooks((prevState) => [
-            ...prevState,
-            {
-              title: fetchedBook["title"],
-              authors: fetchedBook["authors"],
-              publishedDate: fetchedBook["publishedDate"],
-              rating: fetchedBook["averageRating"],
-              thumbnail: fetchedBook["imageLinks"]["thumbnail"],
-              link: fetchedBook["infoLink"],
-            },
-          ]);
+            setBooks((prevState) => [
+              ...prevState,
+              {
+                title: fetchedBook["title"],
+                authors: fetchedBook["authors"]
+                  ? fetchedBook["authors"]
+                  : "Not found :(",
+                publishedDate: fetchedBook["publishedDate"],
+                rating: fetchedBook["averageRating"],
+                thumbnail: fetchedBook["imageLinks"]
+                  ? fetchedBook["imageLinks"]["thumbnail"]
+                  : "https://ravenspacepublishing.org/wp-content/uploads/2019/04/default-book.jpg",
+                link: fetchedBook["infoLink"],
+              },
+            ]);
+          }
         })
       );
     };
@@ -63,7 +74,7 @@ const Readlist = ({ data, playlistData }) => {
                 <h2>{book.title}</h2>
                 <h3>by {book.authors[0]}</h3>
 
-                <p>{book.rating} / 5</p>
+                {book.rating && <p>{book.rating} / 5</p>}
                 <p>{book.publishedDate}</p>
 
                 <a href={book.link}>Link to buy</a>
