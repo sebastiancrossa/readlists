@@ -29,12 +29,12 @@ services:
     env_file:
       - .env
 
-  nginx:
-    container_name: nginx
-    image: nginx:alpine
-    restart: always
-    ports:
-      - "8000:80"
-    volumes:
-      - ./user_conf.d:/etc/nginx/user_conf.d
+  # nginx:
+  #   container_name: nginx
+  #   image: nginx:alpine
+  #   restart: always
+  #   ports:
+  #     - "8000:80"
+  #   volumes:
+  #     - ./user_conf.d:/etc/nginx/user_conf.d
     
