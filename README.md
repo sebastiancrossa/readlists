@@ -32,17 +32,19 @@ recieves and displays data from the Flask API backend adn Google Books API.
 
 The deployment of Kuration.tech was automated and tested through GitHub actions, and monitored through cAdvisor, Prometheus, Grafana and a Discord bot. The database, backend and monitoring tools were containerized through Docker.
 
-# Containers
+### Containers
 
 <img width="1291" alt="Screen Shot 2021-08-20 at 1 26 58 AM" src="https://user-images.githubusercontent.com/68940723/130258117-fc31be4d-4ce0-45a9-b3d9-2cda4c3402d0.png">
 
-# Grafana Dashboard
+### Grafana Dashboard
 
 <img width="1440" alt="Screen Shot 2021-08-20 at 11 08 12 AM" src="https://user-images.githubusercontent.com/68940723/130258256-eb0a7ee6-9e86-4907-8bc6-1d305c9ee71b.png">
 
-# Discord Bot
+### Discord Bot
 
 ![discordbot](https://user-images.githubusercontent.com/68940723/130258462-1644d8d1-d367-4b25-a675-75e22aa87c23.png)
+
+
 
 The AWS instance that the backend server runs on allows all traffic since firewalld handles the firewall rules on the virtual machine.
 
