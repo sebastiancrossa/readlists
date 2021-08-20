@@ -1,36 +1,52 @@
-import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
 
 const FeaturedHeader = () => {
   return (
     <div class="col-md-10 center">
       <div class="card card-style">
         <div class="card-body">
-          <div class="row">
-            <div class="col-md-6 ft-text">
-              <h5>Readlist of the Week</h5>
-              <h1 class="card-title">A Cool Readlist</h1>
+          <InnerContainer class="row">
+            <div class="left col-md-6 ft-text">
+              <Tag>Readlist of the Week</Tag>
+              <h1 class="card-title">Essential mystery</h1>
               <h5 class="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
+                Famous mysteries that will have you at the edge of your seat.
               </h5>
-              <a href="#" class="btn btn-primary">
-                Go to readlist
-              </a>
+              <Link href="/readlist/6" passHref>
+                <a class="btn btn-primary">Go to readlist</a>
+              </Link>
             </div>
-            <div class="col-md-5">
-              <img
-                src="https://images.unsplash.com/photo-1594312915251-48db9280c8f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80"
-                class="rounded mx-auto d-block"
-                // alt="Responsive image"
-                width="auto"
-                height="200"
-              ></img>
+            <div class="right col-md-5">
+              <img src="/icon-readlist.png" width="auto" height="200" />
             </div>
-          </div>
+          </InnerContainer>
         </div>
       </div>
     </div>
   );
 };
+
+const InnerContainer = styled.div`
+  display: flex;
+  justify-items: space-between;
+
+  .right {
+    text-align: right;
+  }
+`;
+
+const Tag = styled.p`
+  margin: 0 0 1rem 0;
+  padding: 0.3rem 1rem;
+
+  font-weight: bold;
+  text-transform: uppercase;
+
+  border-radius: 50rem;
+  color: white;
+  background-color: #8c50ed;
+  width: fit-content;
+`;
 
 export default FeaturedHeader;
