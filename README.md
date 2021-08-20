@@ -28,7 +28,7 @@ This project was primarily written in Python and JavaScript.
 The site uses a postgreSQL database of readlists created through Flask. The React frontend 
 recieves and displays data from the Flask API backend and Google Books API.
 
-## CI/CD 
+## CI/CD & Monitoring
 
 The deployment of Kuration.tech was automated and tested through GitHub actions, and monitored through cAdvisor, Prometheus, Grafana and a Discord bot. The database, backend and monitoring tools were containerized through Docker.
 
